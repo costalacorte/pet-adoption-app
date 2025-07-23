@@ -5,7 +5,8 @@ function NewPetForm({ onPetAdded }) {
   const [name, setName] = useState("");
   const [species, setSpecies] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState(""); // ⬅️ novo estado
+  const [gender, setGender] = useState("");
+  const [image, setImage] = useState(""); // ⬅️ novo estado
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,61 +14,61 @@ function NewPetForm({ onPetAdded }) {
     const newPet = {
       name,
       species,
-      gender, // ⬅️ adiciona no objeto enviado
+      gender,
       age: Number(age),
+      image, // ⬅️ adiciona no objeto enviado
       adopted: false,
     };
 
     axios
-      .post("https://pet-adoption-db-default-rtdb.europe-west1.firebasedatabase.app/pets.json", newPet)
+      .post(
+        "https://pet-adoption-db-default-rtdb.europe-west1.firebasedatabase.app/pets.json",
+        newPet
+      )
       .then(() => {
         alert("Pet added successfully!");
         setName("");
         setSpecies("");
         setAge("");
-        setGender(""); // ⬅️ limpa campo após envio
-
-        if (onPetAdded) {
-          onPetAdded();
-        }
+        setGender("");
+        setImage(""); // limpa o campo da imagem
+        if (onPetAdded) onPetAdded();
       })
-      .catch((err) => {
-        console.error("Error adding pet:", err);
-      });
+      .catch((err) => console.error(err));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Adicionar Novo Pet</h2>
-      <label>
+    <form onSubmit={handleSubmit} style={{ paddingLeft: "20px" }}>
+      <h3>Adicionar Novo Pet</h3>
+      <div>
         Nome:
         <input value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <br />
-      <label>
+      </div>
+      <div>
         Espécie:
         <input value={species} onChange={(e) => setSpecies(e.target.value)} />
-      </label>
-      <br />
-      <label>
-         Sexo:
-     <select value={gender} onChange={(e) => setGender(e.target.value)}>
-      <option value="">Selecionar</option>
-      <option value="Feminino">Feminino</option>
-      <option value="Masculino">Masculino</option>
-  </select>
-</label>
-      <br />
-      <label>
+      </div>
+      <div>
+        Sexo:
+        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="">Selecionar</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Masculino">Masculino</option>
+        </select>
+      </div>
+      <div>
         Idade:
         <input
           type="number"
           value={age}
           onChange={(e) => setAge(e.target.value)}
         />
-      </label>
-      <br />
-      <button type="submit">Adicionar Pet</button>
+      </div>
+      <div>
+        Imagem (URL):
+        <input value={image} onChange={(e) => setImage(e.target.value)} />
+      </div>
+      <button>Adicionar Pet</button>
     </form>
   );
 }

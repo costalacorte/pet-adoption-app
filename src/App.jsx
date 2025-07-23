@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import NewPetForm from "./components/NewPetForm";
+import PetList from "./components/PetList";
 
 // Simple Navbar with logo
 function Navbar() {
@@ -25,39 +25,15 @@ function Navbar() {
 }
 
 function App() {
-  const [pets, setPets] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  // Fetch pet list from Firebase
-  const fetchPets = () => {
-    axios
-      .get(
-        "https://pet-adoption-db-default-rtdb.europe-west1.firebasedatabase.app/pets.json"
-      )
-      .then((response) => {
-        const data = response.data;
-        const petsArray = Object.entries(data).map(([id, pet]) => ({
-          id,
-          ...pet,
-        }));
-        setPets(petsArray);
-      })
-      .catch((error) => console.error("Error fetching pets:", error));
-  };
-
-  useEffect(() => {
-    fetchPets();
-  }, []);
 
   return (
     <div>
-      {/* Top navbar with logo */}
       <Navbar />
 
       <h1 style={{ textAlign: "center", marginTop: "20px" }}>Pet List</h1>
 
-      {/* Form to add a new pet */}
-      <NewPetForm onPetAdded={fetchPets} />
+      <NewPetForm onPetAdded={() => window.location.reload()} />
 
       {/* Search bar */}
       <div style={{ textAlign: "center", marginTop: "20px" }}>
@@ -75,19 +51,8 @@ function App() {
         />
       </div>
 
-      {/* Pet list */}
-      <ul style={{ marginTop: "20px", paddingLeft: "40px" }}>
-        {pets
-          .filter((pet) =>
-            pet.name.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-          .map((pet) => (
-            <li key={pet.id}>
-              <strong>{pet.name}</strong> ({pet.species}, {pet.gender}) - {pet.age}{" "}
-              years
-            </li>
-          ))}
-      </ul>
+      {/* Pet list com filtro */}
+      <PetList searchTerm={searchTerm} />
     </div>
   );
 }
