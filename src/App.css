@@ -1,38 +1,147 @@
-.App {
+body {
+  background-color: #f3e4dc;
+  margin: 0;
+  font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* NAVBAR */
+.navbar {
+  background-color: #C75D2C;
+  padding: 25px 40px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.logo-text {
   color: white;
+  font-weight: bold;
+  font-size: 24px;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar img {
+  height: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar h2 {
+  margin: 0;
+  color: #7c4a36;
 }
+
+/* FORMULÁRIO */
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff5f0;
+  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 1000px;
+  justify-content: center;
+}
+
+.form-container h3 {
+  width: 100%;
+  text-align: center;
+  color: #7c4a36;
+}
+
+.form-container input,
+.form-container select {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* BOTÃO ADICIONAR */
+.add-button {
+  padding: 8px 16px;
+  background-color: #d96f32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* SEARCH INPUT */
+.search-input {
+  padding: 8px;
+  width: 250px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+/* PET CARD */
+.pet-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.pet-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.pet-card h3 {
+  color: #ff6600;
+  margin-bottom: 5px;
+}
+
+.pet-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* DELETE BUTTON */
+.delete-button {
+  margin-top: 10px;
+  background-color: #F8B259;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-title {
+  width: 100%;
+  text-align: center;
+  color: #7c4a36;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.file-upload-label {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #d96f32;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.pet-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
