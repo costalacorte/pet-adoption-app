@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm] = useState("");
 
   return (
     <div>
