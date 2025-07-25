@@ -3,6 +3,8 @@ import NewPetForm from "./components/NewPetForm";
 import PetList from "./components/PetList";
 import Navbar from "./components/Navbar";
 import "./App.css";
+import DetailsPage from "./components/DetailsPage";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [searchTerm] = useState("");
@@ -10,9 +12,12 @@ function App() {
   return (
     <div>
       <Navbar />
-      <h1 className="main-title">Pet List</h1>
-      <NewPetForm onPetAdded={() => window.location.reload()} />
-      <PetList searchTerm={searchTerm} />
+      <Routes>
+        <Route path="/" element={<PetList searchTerm={searchTerm} />} />
+        <Route path="/details" element={<DetailsPage/>} />
+        <Route path="/new-pet" element={<NewPetForm />} />
+      </Routes>
+      
     </div>
   );
 }

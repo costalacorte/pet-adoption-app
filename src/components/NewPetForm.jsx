@@ -1,13 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
-function NewPetForm({ onPetAdded }) {
+function NewPetForm() {
   const [name, setName] = useState("");
   const [species, setSpecies] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [image, setImage] = useState(null);
+
+  const navigate = useNavigate()
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -49,7 +52,9 @@ function NewPetForm({ onPetAdded }) {
         setAge("");
         setGender("");
         setImage(null);
-        if (onPetAdded) onPetAdded();
+
+        // redirect to the list of pets
+        navigate("/")
       })
       .catch((err) => {
         console.error("Error creating pet:", err);

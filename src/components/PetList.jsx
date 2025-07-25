@@ -39,6 +39,7 @@ function PetList() {
 
   return (
     <div style={{ padding: "20px" }}>
+      <h1 className="main-title">Pet List</h1>
       <h2 style={{ textAlign: "center", color: "#7c4a36" }}>Available Pets</h2>
 
       <div style={{ textAlign: "center" }}>
@@ -75,6 +76,10 @@ function PetList() {
 
             <button className="delete-button" onClick={() => handleDelete(pet.id)}>
               Delete
+            </button>
+
+            <button>
+              More details
             </button>
           </div>
         ))}
