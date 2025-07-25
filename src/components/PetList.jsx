@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// ❌ Removido: import { Link } from "react-router-dom";
 import "../App.css";
 import PetCard from "./PetCard";
 
@@ -34,7 +34,6 @@ function PetList() {
       .catch((err) => console.log(err));
   };
 
-  // Agora só mostra pets que não foram adotados
   const filteredPets = pets.filter((pet) =>
     !pet.adopted &&
     (
