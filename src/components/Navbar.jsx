@@ -1,5 +1,5 @@
 import "../App.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -7,13 +7,11 @@ function Navbar() {
       <img src="/logo-snugglepaws.png" alt="SnugglePaws Logo" />
       <h2 className="logo-text">SnugglePaws</h2>
 
-      <nav>
-        <li><Link to= "/" >Home</Link></li>
-        <li><Link to= "/new-pet">Add New Pet</Link></li>
-
+      <nav className="nav-links">
+        <Link to="/" className="nav-button">Home</Link>
+        <Link to="/new-pet" className="nav-button">Add New Pet</Link>
       </nav>
     </header>
-
   );
 }
 

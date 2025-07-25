@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../App.css";
+import PetCard from "./PetCard";
 
 function PetList() {
   const [pets, setPets] = useState([]);
@@ -32,9 +34,13 @@ function PetList() {
       .catch((err) => console.log(err));
   };
 
+  // Agora só mostra pets que não foram adotados
   const filteredPets = pets.filter((pet) =>
-    pet.name.toLowerCase().includes(search.toLowerCase()) ||
-    pet.species.toLowerCase().includes(search.toLowerCase())
+    !pet.adopted &&
+    (
+      pet.name.toLowerCase().includes(search.toLowerCase()) ||
+      pet.species.toLowerCase().includes(search.toLowerCase())
+    )
   );
 
   return (
@@ -61,27 +67,7 @@ function PetList() {
         }}
       >
         {filteredPets.map((pet) => (
-          <div key={pet.id} className="pet-card">
-            {pet.image && (
-              <img src={pet.image} alt={pet.name} className="pet-image" />
-            )}
-
-            <h3>{pet.name}</h3>
-
-            <p>
-              <strong>Gender:</strong> {pet.gender || "Not specified"}<br />
-              <strong>Species:</strong> {pet.species}<br />
-              <strong>Age:</strong> {pet.age} year{pet.age !== 1 ? "s" : ""}
-            </p>
-
-            <button className="delete-button" onClick={() => handleDelete(pet.id)}>
-              Delete
-            </button>
-
-            <button>
-              More details
-            </button>
-          </div>
+          <PetCard key={pet.id} pet={pet} onDelete={handleDelete} />
         ))}
       </div>
     </div>
